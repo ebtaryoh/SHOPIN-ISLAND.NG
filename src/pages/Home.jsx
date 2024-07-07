@@ -37,7 +37,7 @@ const products = [
 
 const Home = () => (
   <>
-    <Navbar1 />
+   
     <HeroSection />
     <div className="text-center d-flex row">
       <h1>UNIQUE CATEGORIES</h1>
@@ -63,7 +63,6 @@ const Home = () => (
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
-      <Footer/>
     </div>
   </>
 );
