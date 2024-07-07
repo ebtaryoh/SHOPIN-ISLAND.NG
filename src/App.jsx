@@ -11,8 +11,9 @@ import Checkout from "./pages/Checkout";
 import RootLayout from "./layouts/RootLayout";
 
 const App = () => (
-  <CartProvider>
-    <Router>
+
+ <CartProvider>
+     <Router>
       <Routes>
         <Route element={<RootLayout />}>
           <Route path="/" element={<Home />} />
@@ -21,7 +22,8 @@ const App = () => (
         </Route>
       </Routes>
     </Router>
-  </CartProvider>
+ </CartProvider>
+  
 );
 
 export default App;
