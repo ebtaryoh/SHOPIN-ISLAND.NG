@@ -1,5 +1,5 @@
 .navbar-size {
-  height: 98.41px;
+  /* height: 98.41px; */
 }
 .logo-size {
   width: 142px;
@@ -9,10 +9,13 @@
   font-size: 16px;
   font-family: "Poppins";
 }
+.nav-grp {
+  margin-left: 0px;
+}
 
 .search-container {
   position: relative;
-  width: 100%;
+  width: 200%;
   max-width: 400px;
 }
 
@@ -27,13 +30,13 @@
 
 .search-icon {
   position: absolute;
-  right: 370px;
+  right: 364px;
   top: 50%;
   transform: translateY(-50%);
 }
 
 .input-bar {
-  width: 230px;
+  width: 280px;
   border-right: none;
   border: #d4d4d4;
   border-style: solid;
@@ -53,42 +56,174 @@
   border-left: none;
 }
 
-
 .select-category {
-background-color: #00BAD3;
-border:#00BAD3;
+  background-color: #00bad3;
+  border: #00bad3;
 }
 
-/* .icon-nav{
+.hero-bg {
+  position: relative;
+}
+.hero-top {
+  position: absolute;
+  top: 140px;
+  right: 370px;
+}
 
-} */
+
 
 .btn-buy {
   background-color: #f2ae29;
   border-color: #f2ae29;
-   color:#000000;
+  color: #000000;
+  width: 130px;
+}
+.text-hero {
+  font-size: 50px;
 }
 
+.footer {
+  background-color: #2b2b2b;
+  height: 300px;
+  padding-top: 70px;
+}
+.footer2 {
+  display: flex;
+  flex-direction: colum;
+}
+/* .footer-icon{
+  
+  
+} */
 
-.footer{
-  background-color: #2B2B2B;
+.contact-font {
+  font-size: x-small;
 }
 
+.card-iconz {
+  background-color: #00bad3;
+  width: 100%;
+  border-radius: 30px;
+}
 
+.new-tag {
+  width: 48%;
+  color: white;
+  background-color: #f2ae29;
+  border-radius: 30px;
+}
+.price {
+  font-weight: 800;
+}
 
+.card-style {
+  border-radius: 28px;
+  border-color: transparent;
+  background-color: #f6f6f6;
+  width: 99%;
+}
+.cardname-style {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.container-custom {
+  padding: 0 15px;
+}
+
+.row-custom {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.col-custom {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 20px;
+}
+
+.reviews {
+  font-size: small;
+  padding-top: 5px;
+}
+
+.footer-chair-bg {
+  background-color: #00bad3;
+
+  height: 300px;
+}
+
+.ft-chair {
+  width: 44%;
+}
+.Footer-chair {
+  position: absolute;
+  top: 34%;
+  left: 90px;
+}
+.footer-chair-div {
+  position: relative;
+  margin-top: 100px;
+  margin-bottom: 120px;
+}
+  
+@media (max-width: 768px) {
+  .box1 {
+    position: relative;
+    }
+
+.box2 {
+    position: absolute;
+    bottom: 60px;
+    left: 150px;
+    font-size:x-small ;
+    padding: 20px;
+  
+}
+  .col-custom {
+    flex: 0 0 50%;
+    max-width: 50%;
+    .reviews {
+      font-size: 7px;
+    }
+    .star-rating {
+      font-size: 12px;
+    }
+ 
+  }
+}
+
+@media (max-width: 767px) {
+  .dropdown-icon {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .footer-section {
+    margin-bottom: 0;
+  }
+
+  .footer-details {
+    display: block;
+  }
+}
+
+.cart-div {
+  width: 20px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 100%;
+  position: relative;
+}
+
+/* 
 /* src/styles/global.css */
-
-/* Color Variables */
-:root {
-  --primary-color: #2a9d8f; /* teal */
-  --secondary-color: #264653; /* dark blue */
-  --accent-color: #e9c46a; /* mustard yellow */
-  --light-color: #f4a261; /* light orange */
-  --dark-color: #e76f51; /* dark orange */
-  --background-color: #f0f0f0; /* light gray */
-  --text-color: #333; /* dark gray */
-  --white-color: #fff; /* white */
-}
 
 /* Global Styles */
 body {
@@ -96,18 +231,6 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-header {
-  background-color: var(--primary-color);
-  color: var(--white-color);
-  padding: 1em;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 nav a {
@@ -194,7 +317,6 @@ button:hover {
   background-color: var(--dark-color);
 }
 
-/* Responsive Styles */
 @media (max-width: 600px) {
   .product-list,
   .cart-list {
@@ -224,4 +346,4 @@ button:hover {
     width: 100%;
     max-width: 300px;
   }
-}
+} */

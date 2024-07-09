@@ -1,45 +1,30 @@
 import React from "react";
-import ProductCard from "../components/ProductCard";
-import Navbar1 from "../components/Navbar1";
 import HeroSection from "../components/HeroSection";
-import { Button } from "react-bootstrap";
-import Footer from "../components/Footer";
-const products = [
-  {
-    id: 1,
-    name: "Product 1",
-    description: "Description 1",
-    price: 10,
-    image: "/path/to/image1.jpg",
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    description: "Description 2",
-    price: 20,
-    image: "/path/to/image2.jpg",
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    description: "Description 3",
-    price: 60,
-    image: "/path/to/image2.jpg",
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    description: "Description 4",
-    price: 40,
-    image: "/path/to/image2.jpg",
-  },
-];
+import Products from "../components/Products";
+import FooterChair1 from "../Images/Footer-chair1.png";
+import FooterChair2 from "../Images/Footer-chair2.png";
+import { Image } from "react-bootstrap";
 
 const Home = () => (
-  <>
-   
+  <div className="bg-white">
     <HeroSection />
-    <div className="text-center d-flex row">
+    <div className="text-center mt-5 ">
+      <h2 className="fw-bold">Our Products</h2>
+      <p className="fs-5">See our amazing list of chair</p>
+    </div>
+    <Products />
+
+<div className="footer-chair-div ">
+<div className="footer-chair-bg ">
+      
+      </div>
+  <div className="d-flex flex-row Footer-chair gap-5">
+  <Image className="ft-chair" src={FooterChair1}/>
+  <Image className="ft-chair" src={FooterChair2}/>
+  </div>
+</div>
+
+    {/* <div className="text-center d-flex row">
       <h1>UNIQUE CATEGORIES</h1>
       <div className="d-flex gap-4 text-center">
         <Button type="button" className=" rounded-0 px-4 py-1 select-category">
@@ -63,8 +48,8 @@ const Home = () => (
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
-    </div>
-  </>
+    </div> */}
+  </div>
 );
 
 export default Home;

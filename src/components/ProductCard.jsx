@@ -1,49 +1,46 @@
-import React from 'react'
+import React, { useState } from "react";
+import { Card, Button } from "react-bootstrap";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import Rating from "react-rating";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { useCart } from "../contexts/CartContext";
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Chair1 from "../../src/Images/chair1.png"
-import { Image } from 'react-bootstrap';
+const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
+  const [isFavorite, setIsFavorite] = useState(false);
 
-function ProductCard() {
+  const handleFavoriteClick = () => {
+    setIsFavorite(!isFavorite);
+  };
+
   return (
-    <Card style={{ width: '18rem' }} className='container'>
-      <Image variant="top" src="holder.js/100px180" />
-      <Image src={Chair1} />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-        ULTRA PLUSH RECLINING LIVING ROOM CHAIR
-        </Card.Text>
-        <div className='d-flex column-gap-3'>
-        <Button variant="primary">Add to Cart</Button>
-        <Button variant="primary">Go somewhere</Button>
+    <Card className="card-style container mt-5 ">
+      <Card.Img variant="top" src={product.image} />
+      <Card.Body className=" ">
+        <Card.Title className="cardname-style">{product.chairType}</Card.Title>
+        <Card.Text className="price mb-0">{product.price}</Card.Text>
+        <div className="d-flex gap-1 rev-star">
+          <Rating
+            className="star-rating"
+            emptySymbol={<AiOutlineStar color="gold" />}
+            fullSymbol={<AiFillStar color="gold" />}
+            initialRating={4}
+            readonly
+          />
+          <p className="reviews">(238 Reviews)</p>
+        </div>
+        <div className="mt-2">
+          <Button
+            className="card-iconz"
+            variant="primary"
+            onClick={() => addToCart(product)}
+          >
+            Add to Cart
+          </Button>
         </div>
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default ProductCard;
-
-
-
-// // src/components/ProductCard.jsx
-// import React from 'react';
-// import { useCart } from '../context/CartContext';
-
-// const ProductCard = ({ product }) => {
-//   const { addToCart } = useCart();
-
-//   return (
-//     <div className="product-card">
-//       <img src={product.image} alt={product.name} />
-//       <h2>{product.name}</h2>
-//       <p>{product.description}</p>
-//       <p>${product.price}</p>
-//       <button onClick={() => addToCart(product)}>Add to Cart</button>
-//     </div>
-//   );
-// };
-
-// export default ProductCard;
