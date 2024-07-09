@@ -6,10 +6,6 @@ import Chair5 from "../Images/Chair5.png";
 import Chair6 from "../Images/Chair6.png";
 import Chair7 from "../Images/Chair7.png";
 import Chair8 from "../Images/Chair-8.png";
-import Chair9 from "../Images/Chair-9.png";
-import Chair10 from "../Images/Chair10.png";
-import Chair11 from "../Images/Chair11.png";
-import Chair12 from "../Images/Chair12.png";
 
 export const products = [
   {
@@ -58,30 +54,6 @@ export const products = [
     id: 8,
     image: Chair8,
     chairType: "FANCY CHAIR WITH WOODEN ARM FROM BELOW",
-    price: "$500.00",
-  },
-  {
-    id: 8,
-    image: Chair9,
-    chairType: "COMFORTABLE FOAM BEAN BAG CHAIR",
-    price: "$500.00",
-  },
-  {
-    id: 10,
-    image: Chair10,
-    chairType: "HIGH-BACK ERGONOMIC LEATHER OFFICE CHAIR",
-    price: "$500.00",
-  },
-  {
-    id: 11,
-    image: Chair11,
-    chairType: "RECLINING ZERO GRAVITY LOUNGE CHAIR",
-    price: "$500.00",
-  },
-  {
-    id: 12,
-    image: Chair12,
-    chairType: "HIGH-BACK ERGONOMIC LEATHER OFFICE CHAIR",
     price: "$500.00",
   },
 ];

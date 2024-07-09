@@ -1,6 +1,4 @@
-.navbar-size {
-  /* height: 98.41px; */
-}
+
 .logo-size {
   width: 142px;
   height: 58.41px;
@@ -70,8 +68,6 @@
   right: 370px;
 }
 
-
-
 .btn-buy {
   background-color: #f2ae29;
   border-color: #f2ae29;
@@ -91,10 +87,6 @@
   display: flex;
   flex-direction: colum;
 }
-/* .footer-icon{
-  
-  
-} */
 
 .contact-font {
   font-size: x-small;
@@ -166,20 +158,20 @@
   margin-top: 100px;
   margin-bottom: 120px;
 }
-  
+
 @media (max-width: 768px) {
   .box1 {
     position: relative;
-    }
+    padding-right:20px ;
+  }
 
-.box2 {
+  .box2 {
     position: absolute;
     bottom: 60px;
-    left: 150px;
-    font-size:x-small ;
-    padding: 20px;
-  
-}
+    left: 20px;
+    font-size: small;
+    padding: 14px;
+  }
   .col-custom {
     flex: 0 0 50%;
     max-width: 50%;
@@ -189,8 +181,8 @@
     .star-rating {
       font-size: 12px;
     }
- 
   }
+  
 }
 
 @media (max-width: 767px) {
@@ -222,10 +214,7 @@
   position: relative;
 }
 
-/* 
-/* src/styles/global.css */
 
-/* Global Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -346,4 +335,4 @@ button:hover {
     width: 100%;
     max-width: 300px;
   }
-} */
+}

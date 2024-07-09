@@ -9,7 +9,7 @@ const Home = () => (
   <div className="bg-white">
     <HeroSection />
     <div className="text-center mt-5 ">
-      <h2 className="fw-bold">Our Products</h2>
+      <h2 className="fw-bold">AMAZING LIST OF CHAIR</h2>
       <p className="fs-5">See our amazing list of chair</p>
     </div>
     <Products />

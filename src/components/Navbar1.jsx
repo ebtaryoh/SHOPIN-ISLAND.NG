@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
   Image,
   Navbar,
   Nav,
+  Badge, Row, Col
 } from "react-bootstrap";
+import { useSelector, useDispatch } from 'react-redux' 
+import { toggleStatusTab } from '../stores/Cart'
+
+
 import logo1 from "../../src/Images/Shoping_Island.png";
 import { Link } from "react-router-dom";
 import { GrFavorite } from "react-icons/gr";
@@ -14,6 +19,18 @@ import { HiOutlineUser } from "react-icons/hi2";
 import { IoIosSearch } from "react-icons/io";
 
 const Navbar1 = () => {
+  const [query, setQuery] = useState("");
+    const [totalQuantity, setTotalQuantity] = useState(0);
+    const carts = useSelector(store => store.cart.items);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        let total = 0;
+        carts.forEach(item => total += item.quantity);
+        setTotalQuantity(total);
+    }, [carts])
+    const handleOpenTabCart = () => {
+        dispatch(toggleStatusTab());
+    }
   return (
     <Navbar
       expand="lg"
@@ -49,67 +66,38 @@ const Navbar1 = () => {
                 <label>Search</label>
               </Button>
             </div >
-            <div className="d-flex mt-2 mobile-view-icons box2 ">
-              <a href="/favorite" className="text-black icon-nav1 text-center  ">
-                <GrFavorite className="align-" />
-                <p>favorite</p>
-              </a>
-
-              <a href="/cartpage" className="text-black icon-nav text-center ">
-                <div className="cart-div d-flex justify-content-center align-items-center ">
-                  <MdOutlineShoppingCart className="w-5" />
-                  <span>0</span>
-                </div>
-                <p>Cart</p>
-              </a>
-              <a href="/profile" className="text-black icon-nav text-center">
-                <HiOutlineUser />
-                <p>Profile</p>
-              </a>
-            </div>
+           
+            <div>
+  <Container className="box2">
+    <Row className="mt-2 p">
+      <Col className="d-flex justify-content-center align-items-center position-relative ms-">
+        <a href="/cart1" className="d-flex flex-column align-items-center">
+          <MdOutlineShoppingCart size={28} />
+          <p className="">Cart</p>
+        </a>
+        <Badge
+          pill
+          bg="danger"
+          className="position-absolute top-0 end-0 translate-middle "
+        >
+          {totalQuantity}
+        </Badge>
+      </Col>
+      <Col className="d-flex justify-content-center align-items-center">
+        <a href="/profile" className="d-flex flex-column align-items-center ">
+          <HiOutlineUser size={25  } />
+          <p>Profile</p>
+        </a>
+      </Col>
+    </Row>
+  </Container>
+</div>;
        </div>
       </Container>
     </Navbar>
   );
 };
 
-//   return (
-//     <Navbar className=" navbar-size bg-white center navbar-custom">
-//       <div className="container">
 
-//         <div className="nav-grp">
-//           <Link to="/" className=" text-dark nav-linkss">
-//             Home
-//           </Link>
-//           <Link to="/About" className=" text-dark nav-linkss">
-//             About Us
-//           </Link>
-//           <Link to="/Category" className=" text-dark nav-linkss">
-//             Category
-//           </Link>
-//           <Link to="/Contact" className=" text-dark nav-linkss">
-//             Contact
-//           </Link>
-//         </div>
-//         <div className="nav-grp-side-bar">
-//           <Link to="/" className=" text-dark nav-linkss">
-//             Home
-//           </Link>
-//           <Link to="/About" className=" text-dark nav-linkss">
-//             About Us
-//           </Link>
-//           <Link to="/Category" className=" text-dark nav-linkss">
-//             Category
-//           </Link>
-//           <Link to="/Contact" className=" text-dark nav-linkss">
-//             Contact
-//           </Link>
-//           <a href=""></a>
-//         </div>
-
-//       </div>
-//     </Navbar>
-//   );
-// };
 
 export default Navbar1;
