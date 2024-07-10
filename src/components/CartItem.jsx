@@ -54,7 +54,7 @@ const CartItem = (props) => {
       {detail && detail.image && (
         <Image
           src={detail.image}
-          alt={detail.name}
+          alt={detail.chairType}
           className="w-28 rounded-xl"
           fluid
         />
@@ -62,7 +62,7 @@ const CartItem = (props) => {
 
       <div className="flex-grow-1 ms-2">
         <div>
-          {detail && detail.name && <h3>{detail.name}</h3>}
+          {detail && detail.chairType && <h3>{detail.chairType}</h3>}
           {detail && detail.text && <h6>{detail.text}</h6>}
         </div>
         <div className="d-flex align-items-center gap-2 w-60">

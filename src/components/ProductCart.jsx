@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../stores/Cart";
 import { Button, Image } from "react-bootstrap";
-import rate from "../assets/rate.png";
+import rate from "../Images/rating.png";
 
-const ProductCart = (props) => {
+const ProductCart = (product) => {
   const [addedToCart, setAddedToCart] = useState(false);
   const carts = useSelector((store) => store.cart.items);
-  const { id, name, price, image, slug } = props.data;
+  const { id, chairType, price, image, slug } = product.data;
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
@@ -27,9 +27,8 @@ const ProductCart = (props) => {
     }
   };
 
-  const isSpecialProduct = [23].includes(id); // Check if the product is in the special products list
-  const itSpecialProduct = [24, 19, 18, 17, 1, 2, 3, 5, 6, 7].includes(id); // Check if the product is a special product
-
+  const isSpecialProduct = [23].includes(id); t
+  const itSpecialProduct = [24, 19, 18, 17, 1, 2, 3, 5, 6, 7].includes(id); 
   return (
     <div
       className={`bg-white p-5 rounded-xl shadow-sm ${
@@ -39,7 +38,7 @@ const ProductCart = (props) => {
       <Link to={slug}>
         <Image
           src={image}
-          alt={name}
+          alt={chairType}
           className={`${
             isSpecialProduct ? "w-full h-60 mb-14" : "w-full h-60"
           }`}
@@ -53,7 +52,7 @@ const ProductCart = (props) => {
             : "text-xl text-center font-medium"
         }`}
       >
-        {name}
+        {chairType}
       </p>
       <div className="d-flex justify-content-between align-items-center">
         <p>

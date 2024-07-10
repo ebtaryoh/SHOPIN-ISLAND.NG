@@ -14,9 +14,9 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <Card className="card-style container mt-5 ">
+    <Card className="card-style container mt-5">
       <Card.Img variant="top" src={product.image} />
-      <Card.Body className=" ">
+      <Card.Body>
         <Card.Title className="cardname-style">{product.chairType}</Card.Title>
         <Card.Text className="price mb-0">{product.price}</Card.Text>
         <div className="d-flex gap-1 rev-star">

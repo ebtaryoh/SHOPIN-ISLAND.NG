@@ -1,16 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import CartItem from './CartItem'; 
+import CartItem from './CartItem';
 import { toggleStatusTab } from '../stores/Cart';
 import { Link } from 'react-router-dom';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 
 const CartTab = () => {
-  const carts = useSelector((store) => store.cart.items);
-  const statusTab = useSelector((store) => store.cart.statusTab);
+  const cartItems = useSelector((state) => state.cart.items); // Fetch cart items from Redux store
   const dispatch = useDispatch();
-
-  const cartItems = useSelector((state) => state.cart.items);
 
   const formatPrice = (price) => {
     if (isNaN(price)) {
@@ -21,7 +18,8 @@ const CartTab = () => {
 
   const calculateTotalCartPrice = () => {
     if (cartItems.length === 0) {
-      return 0; }
+      return 0;
+    }
 
     return cartItems.reduce((total, item) => {
       const price = parseFloat(item.price) || 0;
@@ -37,7 +35,7 @@ const CartTab = () => {
   const calculateTotal = () => {
     const subtotal = calculateSubtotal();
     if (!isNaN(subtotal)) {
-      const deliveryFee = 10000; 
+      const deliveryFee = 10000;
       return subtotal + deliveryFee;
     } else {
       console.error("Error calculating subtotal. Please check item prices.");
@@ -56,7 +54,7 @@ const CartTab = () => {
       <Row className="justify-content-center">
         <Col md={8} className="bg-white">
           <h2 className="p-5 text-black text-2xl">My Cart</h2>
-          {carts.length === 0 ? (
+          {cartItems.length === 0 ? (
             <div className="p-5 text-center">
               <p className='text-xl'>Cart is empty</p>
               <Link to="/">
@@ -68,7 +66,7 @@ const CartTab = () => {
           ) : (
             <Row>
               <Col md={7}>
-                {carts.map((item, key) => (
+                {cartItems.map((item, key) => (
                   <CartItem key={key} data={item} />
                 ))}
               </Col>

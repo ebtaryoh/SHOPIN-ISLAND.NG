@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import ProductCard from './ProductCard';
+import ProductCart from './ProductCart';
 import products from './ProductDb';
 import product1 from "./PorductDb1"
 import product2 from "./ProductDb2"
