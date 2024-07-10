@@ -5,7 +5,6 @@ import { toggleStatusTab } from '../stores/Cart';
 
 import logo1 from "../../src/Images/Shoping_Island.png";
 import { Link } from "react-router-dom";
-import { GrFavorite } from "react-icons/gr";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { HiOutlineUser } from "react-icons/hi2";
 import { IoIosSearch } from "react-icons/io";

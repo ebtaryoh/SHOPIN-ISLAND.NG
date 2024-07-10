@@ -1,13 +1,11 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
-import { toggleStatusTab } from '../stores/Cart';
 import { Link } from 'react-router-dom';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 
 const CartTab = () => {
   const cartItems = useSelector((state) => state.cart.items); // Fetch cart items from Redux store
-  const dispatch = useDispatch();
 
   const formatPrice = (price) => {
     if (isNaN(price)) {
@@ -44,10 +42,6 @@ const CartTab = () => {
   };
 
   const formattedTotalPrice = formatPrice(calculateTotalCartPrice());
-
-  const handleCloseTabCart = () => {
-    dispatch(toggleStatusTab());
-  };
 
   return (
     <Container className="bg-zinc-100 md:pl-28">

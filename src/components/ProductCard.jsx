@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Button } from "react-bootstrap";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import Rating from "react-rating";
 import { useCart } from "../contexts/CartContext";
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../stores/Cart';
 
 const ProductCard = ({ product }) => {
-  const { addToCart } = useCart();
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { addToCart: addToCartContext } = useCart();
+  const dispatch = useDispatch();
 
-  const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
+  const handleAddToCart = () => {
+    dispatch(addToCart(product)); 
+    addToCartContext(product); 
   };
 
   return (
@@ -33,7 +35,7 @@ const ProductCard = ({ product }) => {
           <Button
             className="card-iconz"
             variant="primary"
-            onClick={() => addToCart(product)}
+            onClick={handleAddToCart} 
           >
             Add to Cart
           </Button>
