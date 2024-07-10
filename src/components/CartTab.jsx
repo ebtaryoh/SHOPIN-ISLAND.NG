@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 
 const CartTab = () => {
-  const cartItems = useSelector((state) => state.cart.items); // Fetch cart items from Redux store
+  const cartItems = useSelector((state) => state.cart.items);
 
   const formatPrice = (price) => {
     if (isNaN(price)) {
@@ -15,10 +15,6 @@ const CartTab = () => {
   };
 
   const calculateTotalCartPrice = () => {
-    if (cartItems.length === 0) {
-      return 0;
-    }
-
     return cartItems.reduce((total, item) => {
       const price = parseFloat(item.price) || 0;
       const quantity = parseInt(item.quantity) || 0;
@@ -44,15 +40,15 @@ const CartTab = () => {
   const formattedTotalPrice = formatPrice(calculateTotalCartPrice());
 
   return (
-    <Container className="bg-zinc-100 md:pl-28">
+    <Container className="bg-light md:pl-28">
       <Row className="justify-content-center">
         <Col md={8} className="bg-white">
-          <h2 className="p-5 text-black text-2xl">My Cart</h2>
+          <h2 className="p-5 text-dark text-2xl">My Cart</h2>
           {cartItems.length === 0 ? (
             <div className="p-5 text-center">
               <p className='text-xl'>Cart is empty</p>
               <Link to="/">
-                <Button className="bg-cyan-500 text-black mt-16 mb-[87px] w-44 h-10 rounded-lg">
+                <Button className="bg-primary text-white mt-16 mb-5 w-44 h-10 rounded-lg">
                   Keep Shopping
                 </Button>
               </Link>
@@ -65,7 +61,7 @@ const CartTab = () => {
                 ))}
               </Col>
               <Col md={5}>
-                <Card className="bg-teal-900 text-white">
+                <Card className="bg-dark text-white">
                   <Card.Body>
                     <Card.Title>Summary</Card.Title>
                     <div className="d-flex justify-content-between border-bottom border-gray-300 py-3">
@@ -81,7 +77,7 @@ const CartTab = () => {
                       <span>₦{calculateTotal().toFixed(2)}</span>
                     </div>
                     <Link to="/checkoutpage">
-                      <Button className="w-100 bg-yellow-400 mt-4">
+                      <Button className="w-100 bg-warning mt-4">
                         CHECK OUT
                       </Button>
                     </Link>
