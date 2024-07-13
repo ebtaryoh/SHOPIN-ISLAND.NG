@@ -4,7 +4,7 @@ import { Image, Button, Col, Row } from "react-bootstrap";
 import { products } from "../components/ProductDb";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../stores/Cart";
-import { product1 } from "../components/PorductDb1";
+import { product1 } from "../components/ProductDb1";
 import { product2 } from "../components/ProductDb2";
 
 const Detail = () => {
@@ -46,39 +46,33 @@ const Detail = () => {
   };
 
   return (
-    <div className="pb-10">
-      <h2 className="text-3xl text-center pt-5">PRODUCT DETAIL</h2>
+    <div className="pb-1">
+      <h2 className="text-center pt-5">PRODUCT DETAIL</h2>
       <Row className="mt-5">
-        <Col>
-          <Image src={detail.image} alt={detail.name} fluid />
+        <Col md={6}>
+          <Image src={detail.image} alt={detail.chairType} fluid />
         </Col>
-        <Col>
-          <div className="d-flex flex-column gap-5">
-            <h1 className="text-4xl uppercase font-bold">{detail.name}</h1>
-            <p className="font-bold text-3xl">${detail.price}</p>
-            <div className="d-flex gap-5 align-items-center">
+        <Col md={6}>
+          <div className="d-flex flex-column gap-4">
+            <h1 className="text-uppercase font-weight-bold">
+              {detail.chairType}
+            </h1>
+            <p className="font-weight-bold h3">${detail.price}</p>
+            <div className="d-flex gap-3 align-items-center">
               <div className="d-flex gap-2 justify-content-center align-items-center">
-                <Button
-                  variant="light"
-                  className="font-bold text-xl rounded-xl"
-                  onClick={handleMinusQuantity}
-                >
+                <Button variant="light" onClick={handleMinusQuantity}>
                   -
                 </Button>
-                <span className="bg-gray-200 h-full w-10 font-bold text-xl rounded-xl d-flex justify-content-center align-items-center">
+                <span className="bg-light px-3 py-2 font-weight-bold">
                   {quantity}
                 </span>
-                <Button
-                  variant="light"
-                  className="font-bold text-xl rounded-xl"
-                  onClick={handlePlusQuantity}
-                >
+                <Button variant="light" onClick={handlePlusQuantity}>
                   +
                 </Button>
               </div>
               <Button
-                variant="slate"
-                className="px-7 py-3 rounded-xl shadow-2xl text-white"
+                variant="dark"
+                className="ms-3 "
                 onClick={handleAddToCart}
               >
                 Add To Cart

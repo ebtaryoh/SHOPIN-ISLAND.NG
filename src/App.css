@@ -34,8 +34,8 @@
 }
 
 .input-bar {
-  width: 280px;
-  border-right: none;
+  width: 260px;
+    border-right: none;
   border: #d4d4d4;
   border-style: solid;
 }
@@ -115,7 +115,7 @@
   width: 99%;
 }
 .cardname-style {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
 }
 
@@ -159,18 +159,41 @@
   margin-bottom: 120px;
 }
 
+.visa-bg{
+  background-color: #005E6B;
+}
+
+.cart-pro{
+  font-size: small;
+  margin-left: auto;
+  padding: 10px;
+ 
+}
+
+
+
 @media (max-width: 768px) {
   .box1 {
     position: relative;
-    padding-right:20px ;
+    right: 10px;
   }
 
   .box2 {
     position: absolute;
-    bottom: 60px;
-    left: 20px;
-    font-size: small;
-    padding: 14px;
+    bottom: 70px;
+    left: -60px;
+    font-size:xx-small;
+    margin: 10px;
+    padding-bottom: 20px;
+  }
+  .cart-m{
+    padding: 1px;
+    padding-left: 200px;
+margin-left: 14px;  
+  }
+  .text-hero {
+    font-size: 2px;
+    padding-bottom: 2px ;
   }
   .col-custom {
     flex: 0 0 50%;

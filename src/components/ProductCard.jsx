@@ -1,26 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { useSelector, useDispatch } from "react-redux";
 import Rating from "react-rating";
-import { useCart } from "../contexts/CartContext";
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../stores/Cart';
+import { addToCart } from "../stores/Cart";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  const { addToCart: addToCartContext } = useCart();
+  const [addedToCart, setAddedToCart] = useState(false);
+  const carts = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product)); 
-    addToCartContext(product); 
+    const productInCart = carts.find((item) => item.productId === product.id);
+
+    if (!productInCart) {
+      dispatch(
+        addToCart({
+          productId: product.id,
+          quantity: 1,
+        })
+      );
+      setAddedToCart(true);
+    } else {
+      console.log("Product already added to cart");
+      alert("Product already added to the cart");
+    }
   };
 
   return (
     <Card className="card-style container mt-5">
-      <Card.Img variant="top" src={product.image} />
+      <Link to={product.slug}>
+        <Card.Img variant="top" src={product.image} />
+      </Link>
       <Card.Body>
         <Card.Title className="cardname-style">{product.chairType}</Card.Title>
-        <Card.Text className="price mb-0">{product.price}</Card.Text>
+        <Card.Text className="price mb-0">₦ {product.price}</Card.Text>
         <div className="d-flex gap-1 rev-star">
           <Rating
             className="star-rating"
@@ -33,11 +48,12 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="mt-2">
           <Button
-            className="card-iconz"
-            variant="primary"
-            onClick={handleAddToCart} 
+            variant={addedToCart ? "secondary" : "info"}
+            className={`w-100 mt-3 rounded-5 ${addedToCart ? "cursor-not-allowed" : ""}`}
+            onClick={handleAddToCart}
+            disabled={addedToCart}
           >
-            Add to Cart
+            {addedToCart ? "Added to Cart" : "Add To Cart"}
           </Button>
         </div>
       </Card.Body>

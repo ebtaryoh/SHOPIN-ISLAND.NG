@@ -8,7 +8,7 @@ const HeroSection = () => {
    <div className='text-center hero-top '>
    <h1 className='text-white  fw-bold text-hero '>FANCY AND LUXURIOUS </h1>
    <h1 className='text-white  fw-bold text-hero '>CHAIRS</h1>
-    <p className='text-white fs-4'>So comfortable and soft</p>
+    <p className='text-white fs-4 text-hero-s'>So comfortable and soft</p>
     {/* <Button className='btn-buy fw-bold '>Buy Now</Button> */}
    </div>
     </div>

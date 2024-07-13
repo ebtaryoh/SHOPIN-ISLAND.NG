@@ -1,92 +1,101 @@
-import Chair17 from "../Images/chair17.png";
-import Chair18 from "../Images/chair18.png";
-import Chair19 from "../Images/chair19.png";
-import Chair20 from "../Images/chair20.png";
-import Chair21 from "../Images/chair21.png";
-import Chair22 from "../Images/chair22.png";
-import Chair23 from "../Images/chair23.png";
-import Chair24 from "../Images/chair24.png";
+import Chair9 from "../Images/Chair-9.png";
+import Chair10 from "../Images/Chair10.png";
+import Chair11 from "../Images/Chair11.png";
+import Chair12 from "../Images/Chair12.png";
+import Chair13 from "../Images/chair13.png";
+import Chair14 from "../Images/chair14.png";
+import Chair15 from "../Images/chair15.png";
+import Chair16 from "../Images/chair16.png";
 
-export const product2 = [
+
+export const product1 = [
+   
   {
-    id: 17,
-    chairType: "ROYAL MULTI COLOURED ARM REST CHAIR",
-    price: 250000.00,
-    image: Chair17,
-    text: "Orange Layer on blue leather  ",
+    id: 9,
+    chairType: "COMFORTABLE FOAM BEAN BAG CHAIR",
+    price: 50000.00,
+    text: "Wooded leg, iron reinforced",
+    image: Chair9,
     description:
       "Mollit anim consectetur adipisicing aute pariatur ad mollit ad. Officia amet aliqua non laborum dolore sint sit eu sit sunt laboris. Dolor tempor ipsum culpa Lorem ipsum ullamco ullamco dolor sit do. Do proident quis ad laborum et proident laborum. Non voluptate eiusmod aute labore ea aute.",
-    slug: "hertfoid-upholstered-chair",
+    slug: "stephanny-275-wide-tufted-armchair",
   },
+
   {
-    id: 18,
-    chairType: "AFRICAN CONCEPT DESIGN ARM REST CHAIR",
-    price: 155000.00,
-      text: "Orange Layer on blue leather  ",
-    image: Chair18,
+    id: 10,
+    chairType: "HIGH-BACK ERGONOMIC LEATHER OFFICE CHAIR",
+    price: 55000.00,
+    text: "Wooded leg, iron reinforced",
+    image: Chair10,
     description:
       "Mollit anim consectetur adipisicing aute pariatur ad mollit ad. Officia amet aliqua non laborum dolore sint sit eu sit sunt laboris. Dolor tempor ipsum culpa Lorem ipsum ullamco ullamco dolor sit do. Do proident quis ad laborum et proident laborum. Non voluptate eiusmod aute labore ea aute.",
-    slug: "bingdon-pholstered-chair-swivel",
+    slug: "stephanny-275-wide-tufted-armchair",
   },
+
   {
-    id: 19,
-    chairType: "OUTDOOR RELAXZATION FULL BODY REST CHAIR",
-    price: 300000.00,
-      text: "Orange Layer on blue leather  ",
-    image: Chair19,
+    id: 11,
+    chairType: "RECLINING ZERO GRAVITY LOUNGE CHAIR",
+    price: 30000.00,
+    text: "Wooded leg, iron reinforced",
+    image: Chair11,
     description:
       "Mollit anim consectetur adipisicing aute pariatur ad mollit ad. Officia amet aliqua non laborum dolore sint sit eu sit sunt laboris. Dolor tempor ipsum culpa Lorem ipsum ullamco ullamco dolor sit do. Do proident quis ad laborum et proident laborum. Non voluptate eiusmod aute labore ea aute.",
-    slug: "jeses-minimore-modern-style-etta",
+    slug: "stephanny-275-wide-tufted-armchair",
   },
+
   {
-    id: 20,
-    chairType: "ABSTRACT GRADIENT COLORED ARM REST CHAIR",
-    price: 405000.00,
-      text: "Orange Layer on blue leather  ",
-    image: Chair20,
+    id: 12,
+    chairType: "HIGH-BACK ERGONOMIC LEATHER OFFICE CHAIR",
+    price: 60000.00,
+    text: "Wooded leg, iron reinforced",
+    image: Chair12,
     description:
       "Mollit anim consectetur adipisicing aute pariatur ad mollit ad. Officia amet aliqua non laborum dolore sint sit eu sit sunt laboris. Dolor tempor ipsum culpa Lorem ipsum ullamco ullamco dolor sit do. Do proident quis ad laborum et proident laborum. Non voluptate eiusmod aute labore ea aute.",
-    slug: "eses-minimore-modern-style-zakari",
+    slug: "stephanny-275-wide-tufted-armchair",
   },
+
   {
-    id: 21,
-    chairType: "TWO LAYERED SOFT BACK REST COMFORTABLE FOAM CHAIR",
-    price: 355000.00,
-      text: "Orange Layer on blue leather  ",
-    image: Chair21,
+    id: 13,
+    chairType: "COMFORTABLE FOAM BEAN BAG CHAIR",
+    price: 20000.00,
+    text: "Wooded leg, iron reinforced",
+    image: Chair13,
     description:
       "Mollit anim consectetur adipisicing aute pariatur ad mollit ad. Officia amet aliqua non laborum dolore sint sit eu sit sunt laboris. Dolor tempor ipsum culpa Lorem ipsum ullamco ullamco dolor sit do. Do proident quis ad laborum et proident laborum. Non voluptate eiusmod aute labore ea aute.",
-    slug: "corrigan-studio-tufed-upholstered-wide-winback-armchair",
+    slug: "stephanny-275-wide-tufted-armchair",
   },
+
   {
-    id: 22,
-    chairType: "AFRICAN CONCEPT DESIGN ARM REST CHAIR WITH EXTRA FORM",
-    price: 600000.00,
-    text: "Orange Layer on blue leather  ",
-    image: Chair22,
+    id: 14,
+    chairType: "HIGH-BACK ERGONOMIC LEATHER OFFICE CHAIR",
+    price: 75000.00,
+    text: "Wooded leg, iron reinforced",
+    image: Chair14,
     description:
       "Mollit anim consectetur adipisicing aute pariatur ad mollit ad. Officia amet aliqua non laborum dolore sint sit eu sit sunt laboris. Dolor tempor ipsum culpa Lorem ipsum ullamco ullamco dolor sit do. Do proident quis ad laborum et proident laborum. Non voluptate eiusmod aute labore ea aute.",
-    slug: "corrigan-studio-273-wide-armchair",
+    slug: "stephanny-275-wide-tufted-armchair",
   },
+
   {
-    id: 23,
-    chairType: "VIP BAR REST CHAIR",
-    price: 510000.00,
-    text: "Orange Layer on blue leather ",
-    image: Chair23,
+    id: 15,
+    chairType: "RECLINING ZERO GRAVITY LOUNGE CHAIR",
+    price: 20000.00,
+    text: "Wooded leg, iron reinforced",
+    image: Chair15,
     description:
       "Mollit anim consectetur adipisicing aute pariatur ad mollit ad. Officia amet aliqua non laborum dolore sint sit eu sit sunt laboris. Dolor tempor ipsum culpa Lorem ipsum ullamco ullamco dolor sit do. Do proident quis ad laborum et proident laborum. Non voluptate eiusmod aute labore ea aute.",
-    slug: "leston-wide-upholstered-fabric",
+    slug: "stephanny-275-wide-tufted-armchair",
   },
+
   {
-    id: 24,
-    chairType: "VIP SALON ARM REST CHAIR",
-    price: 148000.00,
-    text: "Orange Layer on blue leather ",
-    image: Chair24,
+    id: 16,
+    chairType: "HIGH-BACK ERGONOMIC LEATHER OFFICE CHAIR",
+    price: 100000.00,
+    text: "Wooded leg, iron reinforced",
+    image: Chair16,
     description:
       "Mollit anim consectetur adipisicing aute pariatur ad mollit ad. Officia amet aliqua non laborum dolore sint sit eu sit sunt laboris. Dolor tempor ipsum culpa Lorem ipsum ullamco ullamco dolor sit do. Do proident quis ad laborum et proident laborum. Non voluptate eiusmod aute labore ea aute.",
     slug: "stephanny-275-wide-tufted-armchair",
   },
 ];
-export default product2;
+  export default product1
