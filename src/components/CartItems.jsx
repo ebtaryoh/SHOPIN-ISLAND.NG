@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { changeQuantity, removeProduct } from "../stores/Cart";
-import products from "./ProductDb";  // Importing static products data
+import products from "./ProductDb"; 
 import { Button, Image, Row, Col } from "react-bootstrap";
 
 const CartItem = ({ data }) => {
