@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Image, Button, Col, Row } from "react-bootstrap";
-import { products } from "../components/ProductDb";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../stores/Cart";
 import { product1 } from "../components/ProductDb1";

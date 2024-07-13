@@ -3,23 +3,11 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import Visa from "../Images/Visa.png";
-import products from "./ProductDb";
-import product1 from "./ProductDb1";
-import product2 from "./ProductDb2";
+import ProductDb from "./ProductDb"; // Import ProductDb to fetch product details
 
 function Checkout() {
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [selectedMethod, setSelectedMethod] = useState('');
-
-  const handleCountryChange = (event) => {
-    setSelectedCountry(event.target.value);
-  };
-
-  const handleInputChange = (value) => {
-    setSelectedMethod(value);
-  };
-
   const carts = useSelector((store) => store.cart.items);
+
   const formatPrice = (price) => {
     if (isNaN(price)) {
       return "₦0.00";
@@ -27,20 +15,19 @@ function Checkout() {
     return parseFloat(price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   };
 
-  const calculateTotal = () => {
+  const calculateTotal = (products) => {
     let productTotal = 0;
     for (let i = 0; i < carts.length; i++) {
       const cart = carts[i];
       const id = cart.productId;
-      const detail =
-        products.find((product) => product.id === id) ||
-        product1.find((product) => product.id === id) ||
-        product2.find((product) => product.id === id);
+      const detail = products.find((product) => product.id === id);
 
-      productTotal = productTotal + (detail.price * cart.quantity);
+      if (detail) {
+        productTotal += detail.price * cart.quantity;
+      }
     }
 
-    const delivery = 10000;
+    const delivery = 10000; // Assuming a fixed delivery cost
     const totalPrice = productTotal + delivery;
     return totalPrice;
   };
@@ -49,7 +36,7 @@ function Checkout() {
     <Container className="py-5">
       <Row>
         <Col md={8}>
-          <h2 className="pb-5">Check Out</h2>
+          <h2 className="pb-5">Checkout</h2>
           <Card className="p-4 mb-4">
             <Card.Title>Shipping Information</Card.Title>
             <Form>
@@ -57,24 +44,29 @@ function Checkout() {
                 <Form.Label>Address</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Winner Giant Company 16, Akubero Street Off Iyana ipaja, Lagos, Nigeria"
+                  placeholder="Enter your address"
                 />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formPhoneNumber">
                 <Form.Label>Phone Number</Form.Label>
-                <Form.Control type="text" placeholder="+234 803 647 2837" />
+                <Form.Control type="text" placeholder="Enter your phone number" />
               </Form.Group>
 
-              <Button variant="warning" as={Link} to="/" className="mb-3">
+              <Button variant="warning" as={Link} to="/shopping-cart" className="mb-3">
                 Edit
               </Button>
             </Form>
           </Card>
           <Card className="p-4">
-            <Card.Title>Total</Card.Title>
+            <Card.Title>Order Summary</Card.Title>
+            {carts.map((item) => (
+              <div key={item.productId} className="mb-3">
+                <p>{item.quantity} x {item.productId}</p>
+              </div>
+            ))}
             <Card.Text className="fs-4">
-              {formatPrice(calculateTotal())}
+              Subtotal: {formatPrice(calculateTotal(ProductDb))}
             </Card.Text>
           </Card>
         </Col>
@@ -89,26 +81,20 @@ function Checkout() {
                   label="Debit Card"
                   name="paymentMethod"
                   id="cashOnDelivery"
-                  value="Cash on Delivery"
-                  checked={selectedMethod === 'Cash on Delivery'}
-                  onChange={() => handleInputChange('Cash on Delivery')}
                 />
                 <Form.Check
                   type="radio"
                   label="Paypal"
                   name="paymentMethod"
                   id="bankTransfer"
-                  value="Bank Transfer"
-                  checked={selectedMethod === 'Bank Transfer'}
-                  onChange={() => handleInputChange('Bank Transfer')}
                 />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formNameOnCard">
                 <Form.Label>Payment Details</Form.Label>
                 <Form.Control
-                  type="text" 
-                  placeholder="Enter name on Card  "
+                  type="text"
+                  placeholder="Enter name on Card"
                   className="bg-transparent text-white border-bottom"
                 />
               </Form.Group>
@@ -145,8 +131,8 @@ function Checkout() {
               </Row>
             </Form>
 
-            <Button variant="warning" as={Link} to="/shopping-cart" className="mt-4 w-100">
-              Pay
+            <Button variant="warning" as={Link} to="/payment-confirmation" className="mt-4 w-100">
+              Pay Now
             </Button>
           </Card>
         </Col>

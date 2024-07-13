@@ -1,32 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { changeQuantity, removeProduct } from "../stores/Cart";
-import products from "./ProductDb";
-import product1 from "./ProductDb1";
-import product2 from "./ProductDb2";
+import products from "./ProductDb";  // Importing static products data
 import { Button, Image, Row, Col } from "react-bootstrap";
 
-const CartItem = (product) => {
-  const { productId, quantity } = product.data;
+const CartItem = ({ data }) => {
+  const { productId, quantity } = data;
   const [detail, setDetail] = useState({});
   const dispatch = useDispatch();
+  const [subtotal, setSubtotal] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    const findDetail =
-      products.find((product) => product.id === productId) ||
-      product1.find((product) => product.id === productId) ||
-      product2.find((product) => product.id === productId);
+    const fetchProductDetail = async () => {
+      try {
+        const findDetail = products.find((product) => product.id === productId);
+        if (findDetail) {
+          setDetail(findDetail);
+        }
+      } catch (error) {
+        console.error("Error fetching product detail:", error);
+      }
+    };
 
-    if (findDetail) {
-      setDetail(findDetail);
-    }
+    fetchProductDetail();
   }, [productId]);
 
   useEffect(() => {
     if (detail && detail.price) {
-      const itemPrice = detail.price * quantity;
-      setTotalPrice(itemPrice);
+      const itemSubtotal = detail.price * quantity;
+      const itemTotalPrice = itemSubtotal;
+      setSubtotal(itemSubtotal);
+      setTotalPrice(itemTotalPrice);
     }
   }, [quantity, detail]);
 
@@ -56,12 +61,12 @@ const CartItem = (product) => {
       <Row className="align-items-center text-black p-2 border-bottom">
         {detail && detail.image && (
           <Col xs={3}>
-            <Image src={detail.image} alt={detail.name} rounded fluid />
+            <Image src={detail.image} alt={detail.chairType} rounded fluid />
           </Col>
         )}
         <Col xs={6}>
           <div>
-            {detail && detail.name && <h5>{detail.name}</h5>}
+            {detail && detail.chairType && <h5>{detail.chairType}</h5>}
             {detail && detail.text && <small>{detail.text}</small>}
           </div>
           <div className="d-flex align-items-center gap-2 mt-2">
@@ -73,7 +78,7 @@ const CartItem = (product) => {
               +
             </Button>
             {detail && detail.price && (
-              <p className="mb-0">₦{formatPrice(detail.price * quantity)}</p>
+              <p className="mb-0">₦{formatPrice(subtotal)}</p>
             )}
           </div>
         </Col>
@@ -86,6 +91,14 @@ const CartItem = (product) => {
           >
             x
           </Button>
+        </Col>
+      </Row>
+      <Row className="align-items-center text-black p-2">
+        <Col xs={9}>
+          <div className="text-end">
+            <p className="mb-0">Subtotal: ₦{formatPrice(subtotal)}</p>
+            <p className="mb-0">Total: ₦{formatPrice(totalPrice)}</p>
+          </div>
         </Col>
       </Row>
     </div>
