@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Detail from "./pages/Detail"
@@ -11,7 +11,7 @@ import CartTab from "./components/CardTab";
 import Checkout from "./components/Checkout";
 
 const App = () => (
-  <Router>
+  <BrowserRouter>
     <Routes>
       <Route element={<RootLayout />}>
         <Route path="/" element={<Home />} />
@@ -20,7 +20,7 @@ const App = () => (
         <Route path="/checkout" element={<Checkout />} />
       </Route>
     </Routes>
-  </Router>
+  </BrowserRouter>
 );
 
 export default App;
