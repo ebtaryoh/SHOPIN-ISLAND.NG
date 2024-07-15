@@ -184,15 +184,22 @@
     position: relative;
     right: 10px;
   }
- 
-
-  .Footer-chair {
-    position: absolute;
-    top: 40%;
-    left: 25px;
+  .chair1{
+position: absolute;
+bottom: 200px;
   }
+  
+  .Footer-chair {
+    position: relative;
+    top: -120px;
+    left: 22px;
+    width: 800px;
+      }
+  
   .footer-chair-bg{
-    height: 100px;
+    height: 350px;
+    margin-top: -50px;
+    
   }
 
   .box2 {
