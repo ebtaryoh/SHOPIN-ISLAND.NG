@@ -9,7 +9,7 @@ import {
   Row,
   Col,
   Form,
-  FormControl
+  FormControl,
 } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleStatusTab } from "../stores/Cart";
@@ -52,7 +52,7 @@ const Navbar1 = () => {
             <Nav.Link className="m-2 mt-3" href="/about">
               Product
             </Nav.Link>
-                     <Nav.Link className="m-2 mt-3" href="/contact">
+            <Nav.Link className="m-2 mt-3" href="/contact">
               Contact
             </Nav.Link>
           </Nav>
@@ -67,8 +67,12 @@ const Navbar1 = () => {
                 aria-label="Search"
                 onChange={(e) => setQuery(e.target.value)}
               />
-              <Button className="btn-search rounded-start-0 m-3 p-0 ms-0 text-white" variant="outline-primary">
-                Search<IoIosSearch className="search-icon text-black" />
+              <Button
+                className="btn-search rounded-start-0 m-3 p-0 ms-0 text-white"
+                variant="outline-primary"
+              >
+                Search
+                <IoIosSearch className="search-icon text-black" />
               </Button>
             </Form>
           </div>
@@ -76,15 +80,15 @@ const Navbar1 = () => {
             <Container className="box2">
               <Row className="mt-4 cart-pro">
                 <Col className="d-flex justify-content-center align-items-center position-relative cart-m">
-                 
-             <Link to="/cart"
-             className="d-flex flex-column align-items-center"
+                  <Link
+                    to="/cart"
+                    className="d-flex flex-column align-items-center"
                     onClick={handleOpenTabCart}
-             >
+                  >
                     <MdOutlineShoppingCart size={28} />
                     <p>Cart</p>
-             </Link>
-               
+                  </Link>
+
                   <Badge
                     pill
                     bg="danger"

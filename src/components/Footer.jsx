@@ -32,7 +32,7 @@ const Footer = () => {
         <p className="contact-font mb-1">Phone: +123 805 223 2843</p>
         <p className="contact-font mb-1 w-50">Address: 1,Ogunlesi Street, Awoyokun Bus Stop,Onipanu Lagos</p></div>
       </d>
-     <div className="d-flex flex-row gap-5">
+     <div className="d-flex flex-row gap-4">
      <div className="text-white mx-5 ">
         <p className="fw-bold ">Shop</p>
       <div>
@@ -42,7 +42,7 @@ const Footer = () => {
       </div>
       </div>
       <div className="text-white mx-5">
-        <p className="fw-bold">About Us</p>
+        <p className="fw-bold ">About Us</p>
      <div>
      <p className="contact-font mb-1">Who We Are</p>
      <p className="contact-font mb-1">Our Mission</p>

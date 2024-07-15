@@ -184,6 +184,16 @@
     position: relative;
     right: 10px;
   }
+ 
+
+  .Footer-chair {
+    position: absolute;
+    top: 40%;
+    left: 25px;
+  }
+  .footer-chair-bg{
+    height: 100px;
+  }
 
   .box2 {
     position: absolute;

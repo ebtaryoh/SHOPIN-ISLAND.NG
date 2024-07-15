@@ -16,7 +16,7 @@ const Home = () => (
 
     <div className="footer-chair-div">
       <div className="footer-chair-bg"></div>
-      <div className="d-flex flex-row Footer-chair gap-5">
+      <div className="d-flex flex-row Footer-chair gap-3">
         <Image className="ft-chair" src={FooterChair1} />
         <Image className="ft-chair" src={FooterChair2} />
       </div>
