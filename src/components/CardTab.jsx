@@ -1,35 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import CartItem from './CartItems';
-import { toggleStatusTab } from '../stores/Cart';
-import { Container, Row, Col, Button, Card, ListGroup } from 'react-bootstrap';
-import ProductDb from './ProductDb';
+import React from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import CartItem from "./CartItems";
+import { toggleStatusTab } from "../stores/Cart";
+import { Container, Row, Col, Button, Card, ListGroup } from "react-bootstrap";
+import ProductDb from "./ProductDb";
 
 const CartTab = () => {
   const carts = useSelector((store) => store.cart.items);
   const statusTab = useSelector((store) => store.cart.statusTab);
   const dispatch = useDispatch();
 
-  const cartItems = useSelector((state) => state.cart.items);
-
   const formatPrice = (price) => {
     if (isNaN(price)) {
-      return "₦0.00"; 
+      return "₦0.00";
     }
-    return parseFloat(price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  };
-
-  const calculateTotalCartPrice = () => {
-    if (cartItems.length === 0) {
-      return 0; 
-    }
-
-    return cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price) || 0;
-      const quantity = parseInt(item.quantity) || 0;
-      return total + (price * quantity);
-    }, 0);
+    return parseFloat(price).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
   };
 
   const calculateSubtotal = (products) => {
@@ -50,7 +39,7 @@ const CartTab = () => {
   const calculateTotal = (products) => {
     const subtotal = calculateSubtotal(products);
     if (!isNaN(subtotal)) {
-      const deliveryFee = 10000; 
+      const deliveryFee = 10000;
       return subtotal + deliveryFee;
     } else {
       console.error("Error calculating subtotal. Please check item prices.");
@@ -65,7 +54,7 @@ const CartTab = () => {
   return (
     <Container className="pt-5">
       <ProductDb>
-        {(products) => {
+        {({ products }) => {
           const formattedTotalPrice = formatPrice(calculateSubtotal(products));
 
           return (
@@ -74,7 +63,7 @@ const CartTab = () => {
                 <h2 className="mb-4">My Cart</h2>
                 {carts.length === 0 ? (
                   <div>
-                    <p className='text-xl'>Cart is empty</p>
+                    <p className="text-xl">Cart is empty</p>
                     <Link to="/">
                       <Button variant="info" className="mt-4">
                         Keep Shopping
@@ -105,7 +94,7 @@ const CartTab = () => {
                         </ListGroup.Item>
                         <ListGroup.Item className="d-flex justify-content-between">
                           <span>Total:</span>
-                          <strong>₦{calculateTotal(products).toFixed(2)}</strong>
+                          <strong>₦{formatPrice(calculateTotal(products))}</strong>
                         </ListGroup.Item>
                       </ListGroup>
                       <Link to="/checkout">

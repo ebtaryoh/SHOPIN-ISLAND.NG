@@ -8,7 +8,7 @@ const Products = () => {
     <Container className="container-custom">
       <Row className="row-custom">
         <ProductDb>
-          {(products, page, totalPages, setPage) => (
+          {({ products, page, totalPages, setPage }) => ( // Destructure as an object
             <>
               {products.map((product, index) => (
                 <Col md={3} key={index} className="col-custom">

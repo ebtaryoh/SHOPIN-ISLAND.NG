@@ -39,7 +39,7 @@ const Navbar1 = () => {
     <Navbar expand="lg" className="bg-white center navbar-custom">
       <Container>
         <Navbar.Brand href="#home">
-          <Link to="/home" className="logo-size">
+          <Link to="/" className="logo-size">
             <Image src={logo1} />
           </Link>
         </Navbar.Brand>

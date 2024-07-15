@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { changeQuantity, removeProduct } from "../stores/Cart";
-import products from "./ProductDb"; 
 import { Button, Image, Row, Col } from "react-bootstrap";
 
 const CartItem = ({ data }) => {
@@ -9,14 +8,23 @@ const CartItem = ({ data }) => {
   const [detail, setDetail] = useState({});
   const dispatch = useDispatch();
   const [subtotal, setSubtotal] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     const fetchProductDetail = async () => {
       try {
-        const findDetail = products.find((product) => product.id === productId);
-        if (findDetail) {
-          setDetail(findDetail);
+        const response = await fetch(
+          `https://timbu-get-all-products.reavdev.workers.dev/products?organization_id=66463b38709a4cf98ec5811780b8ea7e&Appid=SEKBK1J42EYNC0H&Apikey=24ff0c84141444edad9e9f38110bff4820240713000328036304&product_id=${productId}`
+        );
+        const data = await response.json();
+        if (data) {
+          setDetail({
+            id: data.id,
+            chairType: data.name,
+            price: data.current_price[0].NGN[0],
+            text: data.description,
+            image: `https://api.timbu.cloud/images/${data.photos.length > 0 ? data.photos[0].url : ""}`,
+            slug: data.url_slug,
+          });
         }
       } catch (error) {
         console.error("Error fetching product detail:", error);
@@ -29,9 +37,7 @@ const CartItem = ({ data }) => {
   useEffect(() => {
     if (detail && detail.price) {
       const itemSubtotal = detail.price * quantity;
-      const itemTotalPrice = itemSubtotal;
       setSubtotal(itemSubtotal);
-      setTotalPrice(itemTotalPrice);
     }
   }, [quantity, detail]);
 
@@ -91,14 +97,6 @@ const CartItem = ({ data }) => {
           >
             x
           </Button>
-        </Col>
-      </Row>
-      <Row className="align-items-center text-black p-2">
-        <Col xs={9}>
-          <div className="text-end">
-            <p className="mb-0">Subtotal: ₦{formatPrice(subtotal)}</p>
-            <p className="mb-0">Total: ₦{formatPrice(totalPrice)}</p>
-          </div>
         </Col>
       </Row>
     </div>

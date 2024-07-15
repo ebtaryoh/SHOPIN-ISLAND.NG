@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
 import Visa from "../Images/Visa.png";
-import products from "./ProductDb";
-import product1 from "./ProductDb1";
-import product2 from "./ProductDb2";
+import ProductDb from "./ProductDb";
 
-function Checkout() {
+const Checkout = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedMethod, setSelectedMethod] = useState("");
 
@@ -20,6 +18,7 @@ function Checkout() {
   };
 
   const carts = useSelector((store) => store.cart.items);
+
   const formatPrice = (price) => {
     if (isNaN(price)) {
       return "₦0.00";
@@ -30,17 +29,16 @@ function Checkout() {
     });
   };
 
-  const calculateTotal = () => {
+  const calculateTotal = (products) => {
     let productTotal = 0;
     for (let i = 0; i < carts.length; i++) {
       const cart = carts[i];
       const id = cart.productId;
-      const detail =
-        products.find((product) => product.id === id) ||
-        product1.find((product) => product.id === id) ||
-        product2.find((product) => product.id === id);
+      const detail = products.find((product) => product.id === id);
 
-      productTotal = productTotal + detail.price * cart.quantity;
+      if (detail) {
+        productTotal += detail.price * cart.quantity;
+      }
     }
 
     const delivery = 10000;
@@ -49,118 +47,150 @@ function Checkout() {
   };
 
   return (
-    <Container className="py-5">
-      <Row>
-        <Col md={8}>
-          <h2 className="pb-5">Check Out</h2>
-          <Card className="p-4 mb-4">
-            <Card.Title>Shipping Information</Card.Title>
-            <Form>
-              <Form.Group className="mb-3" controlId="formAddress">
-                <Form.Label>Address</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Winner Giant Company 16, Akubero Street Off Iyana ipaja, Lagos, Nigeria"
-                />
-              </Form.Group>
+    <Container className="pt-5">
+      <ProductDb>
+        {({ products }) => (
+          <Row>
+            <Col md={8}>
+              <h2 className="mb-4">CHECKOUT</h2>
+              <Card className="mb-4">
+                <Card.Body>
+                  <Card.Title>Delivery Address</Card.Title>
+                  <Form>
+                    <Row>
+                      <Col md={6} className="mb-3">
+                        <Form.Group controlId="formFirstName">
+                          <Form.Label>First Name</Form.Label>
+                          <Form.Control type="text" placeholder="Enter first name" />
+                        </Form.Group>
+                      </Col>
+                      <Col md={6} className="mb-3">
+                        <Form.Group controlId="formLastName">
+                          <Form.Label>Last Name</Form.Label>
+                          <Form.Control type="text" placeholder="Enter last name" />
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                    <Form.Group controlId="formEmail" className="mb-3">
+                      <Form.Label>Email</Form.Label>
+                      <Form.Control type="email" placeholder="Enter email" />
+                    </Form.Group>
+                    <Form.Group controlId="formAddress" className="mb-3">
+                      <Form.Label>Address</Form.Label>
+                      <Form.Control type="text" placeholder="Enter address" />
+                    </Form.Group>
+                    <Form.Group controlId="formAddress2" className="mb-3">
+                      <Form.Label>Address 2</Form.Label>
+                      <Form.Control type="text" placeholder="Enter address 2" />
+                    </Form.Group>
+                    <Row>
+                      <Col md={6} className="mb-3">
+                        <Form.Group controlId="formCountry">
+                          <Form.Label>Country</Form.Label>
+                          <Form.Control
+                            as="select"
+                            value={selectedCountry}
+                            onChange={handleCountryChange}
+                          >
+                            <option value="">Choose...</option>
+                            <option value="Nigeria">Nigeria</option>
+                            <option value="Ghana">Ghana</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="Kenya">Kenya</option>
+                          </Form.Control>
+                        </Form.Group>
+                      </Col>
+                      <Col md={6} className="mb-3">
+                        <Form.Group controlId="formState">
+                          <Form.Label>State</Form.Label>
+                          <Form.Control type="text" placeholder="Enter state" />
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={6} className="mb-3">
+                        <Form.Group controlId="formZip">
+                          <Form.Label>Zip</Form.Label>
+                          <Form.Control type="text" placeholder="Enter zip code" />
+                        </Form.Group>
+                      </Col>
+                      <Col md={6} className="mb-3">
+                        <Form.Group controlId="formPhone">
+                          <Form.Label>Phone</Form.Label>
+                          <Form.Control type="text" placeholder="Enter phone number" />
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                  </Form>
+                </Card.Body>
+              </Card>
 
-              <Form.Group className="mb-3" controlId="formPhoneNumber">
-                <Form.Label>Phone Number</Form.Label>
-                <Form.Control type="text" placeholder="+234 803 647 2837" />
-              </Form.Group>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Payment Method</Card.Title>
+                  <Form>
+                    <div key="radio" className="mb-3">
+                      <Form.Check
+                        type="radio"
+                        id="credit"
+                        label="Credit card"
+                        value="credit"
+                        checked={selectedMethod === "credit"}
+                        onChange={(e) => handleInputChange(e.target.value)}
+                      />
+                      <Form.Check
+                        type="radio"
+                        id="debit"
+                        label="Debit card"
+                        value="debit"
+                        checked={selectedMethod === "debit"}
+                        onChange={(e) => handleInputChange(e.target.value)}
+                      />
+                      <Form.Check
+                        type="radio"
+                        id="paypal"
+                        label="PayPal"
+                        value="paypal"
+                        checked={selectedMethod === "paypal"}
+                        onChange={(e) => handleInputChange(e.target.value)}
+                      />
+                    </div>
+                  </Form>
+                </Card.Body>
+              </Card>
+            </Col>
 
-              <Button variant="warning" as={Link} to="/" className="mb-3">
-                Edit
-              </Button>
-            </Form>
-          </Card>
-          <Card className="p-4">
-            <Card.Title>Total</Card.Title>
-            <Card.Text className="fs-4">
-              {formatPrice(calculateTotal())}
-            </Card.Text>
-          </Card>
-        </Col>
-
-        <Col md={4}>
-          <Card className="p-4 visa-bg text-white">
-            <Card.Title>Payment Method</Card.Title>
-            <Form>
-              <Form.Group className="mb-3">
-                <Form.Check
-                  type="radio"
-                  label="Debit Card"
-                  name="paymentMethod"
-                  id="cashOnDelivery"
-                  value="Cash on Delivery"
-                  checked={selectedMethod === "Cash on Delivery"}
-                  onChange={() => handleInputChange("Cash on Delivery")}
-                />
-                <Form.Check
-                  type="radio"
-                  label="Paypal"
-                  name="paymentMethod"
-                  id="bankTransfer"
-                  value="Bank Transfer"
-                  checked={selectedMethod === "Bank Transfer"}
-                  onChange={() => handleInputChange("Bank Transfer")}
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formNameOnCard">
-                <Form.Label>Payment Details</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter name on Card  "
-                  className="bg-transparent text-white border-bottom"
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formCardNumber">
-                <Form.Control
-                  type="text"
-                  placeholder="Card Number"
-                  className="bg-transparent border-bottom"
-                />
-              </Form.Group>
-
-              <img src={Visa} alt="Visa" className="w-12 mb-3" />
-
-              <Row>
-                <Col>
-                  <Form.Group controlId="formExpiration">
-                    <Form.Control
-                      type="text"
-                      placeholder="Expiration"
-                      className="bg-transparent border-bottom"
-                    />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group controlId="formCvv">
-                    <Form.Control
-                      type="text"
-                      placeholder="CVV"
-                      className="bg-transparent border-bottom"
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-            </Form>
-
-            <Button
-              variant="warning"
-              as={Link}
-              to="/shopping-cart"
-              className="mt-4 w-100"
-            >
-              Pay
-            </Button>
-          </Card>
-        </Col>
-      </Row>
+            <Col md={4}>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Order Summary</Card.Title>
+                  <Card.Text>
+                    <div className="d-flex justify-content-between">
+                      <span>Subtotal</span>
+                      <strong>₦{formatPrice(calculateTotal(products) - 10000)}</strong>
+                    </div>
+                    <div className="d-flex justify-content-between">
+                      <span>Delivery</span>
+                      <strong>₦{formatPrice(10000)}</strong>
+                    </div>
+                    <div className="d-flex justify-content-between mt-2">
+                      <span>Total</span>
+                      <strong>₦{formatPrice(calculateTotal(products))}</strong>
+                    </div>
+                  </Card.Text>
+                  <Link to="/confirmation">
+                    <Button variant="warning" className="w-100 mt-4">
+                      PLACE ORDER
+                    </Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        )}
+      </ProductDb>
     </Container>
   );
-}
+};
 
 export default Checkout;
