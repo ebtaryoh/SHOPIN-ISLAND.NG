@@ -16,11 +16,11 @@ const CartItem = ({ data }) => {
           `https://timbu-get-all-products.reavdev.workers.dev/products?organization_id=66463b38709a4cf98ec5811780b8ea7e&Appid=SEKBK1J42EYNC0H&Apikey=24ff0c84141444edad9e9f38110bff4820240713000328036304&product_id=${productId}`
         );
         const data = await response.json();
-        if (data) {
+        if (data && data.current_price && data.photos) {
           setDetail({
             id: data.id,
             chairType: data.name,
-            price: data.current_price[0].NGN[0],
+            price: data.current_price[0]?.NGN[0] || 0,
             text: data.description,
             image: `https://api.timbu.cloud/images/${data.photos.length > 0 ? data.photos[0].url : ""}`,
             slug: data.url_slug,

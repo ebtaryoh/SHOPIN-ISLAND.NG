@@ -76,14 +76,15 @@ const Navbar1 = () => {
             <Container className="box2">
               <Row className="mt-4 cart-pro">
                 <Col className="d-flex justify-content-center align-items-center position-relative cart-m">
-                  <a
-                    href="/cart"
-                    className="d-flex flex-column align-items-center"
+                 
+             <Link to="/cart"
+             className="d-flex flex-column align-items-center"
                     onClick={handleOpenTabCart}
-                  >
+             >
                     <MdOutlineShoppingCart size={28} />
                     <p>Cart</p>
-                  </a>
+             </Link>
+               
                   <Badge
                     pill
                     bg="danger"
