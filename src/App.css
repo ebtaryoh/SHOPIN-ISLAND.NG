@@ -11,6 +11,13 @@
   margin-left: 0px;
 }
 
+.cart-image-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+}
+
+
 .search-container {
   position: relative;
   width: 200%;
@@ -215,6 +222,8 @@ margin-left: 14px;
 }
 
 @media (min-width: 768px) {
+
+
   .footer {
     display: flex;
     justify-content: space-around;

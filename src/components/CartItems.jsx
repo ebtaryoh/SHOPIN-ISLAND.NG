@@ -13,93 +13,65 @@ const CartItem = ({ data }) => {
     const fetchProductDetail = async () => {
       try {
         const response = await fetch(
-          `https://timbu-get-all-products.reavdev.workers.dev/products?organization_id=66463b38709a4cf98ec5811780b8ea7e&Appid=SEKBK1J42EYNC0H&Apikey=24ff0c84141444edad9e9f38110bff4820240713000328036304&product_id=${productId}`
+          `https://timbu-get-all-products.reavdev.workers.dev/products?organization_id=66463b38709a4cf98ec5811780b8ea7e&Appid=SEKBK1J42EYNC0H&Apikey=24ff0c841414747ee4ab6259b2b398c9`
         );
         const data = await response.json();
-        if (data && data.current_price && data.photos) {
-          setDetail({
-            id: data.id,
-            chairType: data.name,
-            price: data.current_price[0]?.NGN[0] || 0,
-            text: data.description,
-            image: `https://api.timbu.cloud/images/${data.photos.length > 0 ? data.photos[0].url : ""}`,
-            slug: data.url_slug,
-          });
-        }
+        const product = data.products.find(
+          (product) => product.id === productId
+        );
+        setDetail(product);
+        setSubtotal(product.price * quantity);
       } catch (error) {
-        console.error("Error fetching product detail:", error);
+        console.error("Error fetching product details:", error);
       }
     };
 
     fetchProductDetail();
-  }, [productId]);
+  }, [productId, quantity]);
 
-  useEffect(() => {
-    if (detail && detail.price) {
-      const itemSubtotal = detail.price * quantity;
-      setSubtotal(itemSubtotal);
-    }
-  }, [quantity, detail]);
-
-  const handleMinusQuantity = () => {
-    if (quantity > 1) {
-      dispatch(changeQuantity({ productId, quantity: quantity - 1 }));
-    }
-  };
-
-  const handlePlusQuantity = () => {
-    dispatch(changeQuantity({ productId, quantity: quantity + 1 }));
-  };
-
-  const handleRemoveProduct = () => {
+  const handleRemove = () => {
     dispatch(removeProduct(productId));
   };
 
-  const formatPrice = (price) => {
-    return parseFloat(price).toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
+  const handleQuantityChange = (newQuantity) => {
+    if (newQuantity > 0) {
+      dispatch(changeQuantity({ productId, quantity: newQuantity }));
+    }
   };
 
   return (
-    <div className="mb-3">
-      <Row className="align-items-center text-black p-2 border-bottom">
-        {detail && detail.image && (
-          <Col xs={3}>
-            <Image src={detail.image} alt={detail.chairType} rounded fluid />
-          </Col>
-        )}
-        <Col xs={6}>
+    <Row className="mb-4">
+      <Col md={3}>
+        <Image src={detail.image} fluid thumbnail />
+      </Col>
+      <Col md={9}>
+        <div className="d-flex justify-content-between align-items-center">
           <div>
-            {detail && detail.chairType && <h5>{detail.chairType}</h5>}
-            {detail && detail.text && <small>{detail.text}</small>}
+            <h5>{detail.name}</h5>
+            <p>Price: ₦{detail.price}</p>
+            <p>Subtotal: ₦{subtotal}</p>
           </div>
-          <div className="d-flex align-items-center gap-2 mt-2">
-            <Button variant="dark" size="sm" onClick={handleMinusQuantity}>
+          <div>
+            <Button
+              variant="outline-secondary"
+              onClick={() => handleQuantityChange(quantity - 1)}
+            >
               -
             </Button>
-            <span>{quantity}</span>
-            <Button variant="dark" size="sm" onClick={handlePlusQuantity}>
+            <span className="mx-2">{quantity}</span>
+            <Button
+              variant="outline-secondary"
+              onClick={() => handleQuantityChange(quantity + 1)}
+            >
               +
             </Button>
-            {detail && detail.price && (
-              <p className="mb-0">₦{formatPrice(subtotal)}</p>
-            )}
           </div>
-        </Col>
-        <Col xs={2} className="text-end">
-          <Button
-            variant="link"
-            size="sm"
-            className="text-danger p-0"
-            onClick={handleRemoveProduct}
-          >
-            x
+          <Button variant="danger" onClick={handleRemove}>
+            Remove
           </Button>
-        </Col>
-      </Row>
-    </div>
+        </div>
+      </Col>
+    </Row>
   );
 };
 

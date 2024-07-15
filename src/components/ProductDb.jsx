@@ -29,7 +29,7 @@ const ProductDb = ({ children }) => {
     fetchProducts();
   }, [page]);
 
-  return children({ products, page, totalPages, setPage }); // Pass an object here
+  return children({ products, page, totalPages, setPage });
 };
 
 export default ProductDb;

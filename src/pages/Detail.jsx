@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import { Image, Button, Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../stores/Cart";
-import { product1 } from "../components/ProductDb1";
-import { product2 } from "../components/ProductDb2";
 
 const Detail = () => {
   const { slug } = useParams();
@@ -13,22 +11,35 @@ const Detail = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const findDetail =
-      products.find((product) => product.slug === slug) ||
-      product1.find((product) => product.slug === slug) ||
-      product2.find((product) => product.slug === slug);
+    const fetchProductDetail = async () => {
+      try {
+        const response = await fetch(
+          `https://timbu-get-all-products.reavdev.workers.dev/products?organization_id=66463b38709a4cf98ec5811780b8ea7e&Appid=SEKBK1J42EYNC0H&Apikey=24ff0c84141444edad9e9f38110bff4820240713000328036304&url_slug=${slug}`
+        );
+        const data = await response.json();
+        if (data && data.products && data.products.length > 0) {
+          const product = data.products[0];
+          setDetail({
+            id: product.id,
+            chairType: product.name,
+            price: product.current_price[0]?.NGN[0] || 0,
+            description: product.description,
+            image: `https://api.timbu.cloud/images/${product.photos.length > 0 ? product.photos[0].url : ""}`,
+          });
+        } else {
+          window.location.href = "/";
+        }
+      } catch (error) {
+        console.error("Error fetching product detail:", error);
+        window.location.href = "/";
+      }
+    };
 
-    if (findDetail) {
-      setDetail(findDetail);
-    } else {
-      window.location.href = "/";
-    }
+    fetchProductDetail();
   }, [slug]);
 
   const handleMinusQuantity = () => {
-    setQuantity((prevQuantity) =>
-      prevQuantity - 1 < 1 ? 1 : prevQuantity - 1
-    );
+    setQuantity((prevQuantity) => (prevQuantity - 1 < 1 ? 1 : prevQuantity - 1));
   };
 
   const handlePlusQuantity = () => {
@@ -49,14 +60,14 @@ const Detail = () => {
       <h2 className="text-center pt-5">PRODUCT DETAIL</h2>
       <Row className="mt-5">
         <Col md={6}>
-          <Image src={detail.image} alt={detail.chairType} fluid />
+          {detail.image && <Image src={detail.image} alt={detail.chairType} fluid />}
         </Col>
         <Col md={6}>
           <div className="d-flex flex-column gap-4">
             <h1 className="text-uppercase font-weight-bold">
               {detail.chairType}
             </h1>
-            <p className="font-weight-bold h3">${detail.price}</p>
+            <p className="font-weight-bold h3">₦{detail.price}</p>
             <div className="d-flex gap-3 align-items-center">
               <div className="d-flex gap-2 justify-content-center align-items-center">
                 <Button variant="light" onClick={handleMinusQuantity}>
@@ -71,7 +82,7 @@ const Detail = () => {
               </div>
               <Button
                 variant="dark"
-                className="ms-3 "
+                className="ms-3"
                 onClick={handleAddToCart}
               >
                 Add To Cart
